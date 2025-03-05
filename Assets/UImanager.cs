@@ -10,12 +10,17 @@ public class UImanager : MonoBehaviour
     public RectTransform rectTransform; // 位置组件
     public List<GameObject> items = new(); // 包含所有图标的列表
     public GameObject exitButton; // **退出按钮**
+    public GameObject shopPannel;
+    private void Start()
+    {
+        shopPannel.SetActive(false);
+    }
 
     // **设置淡入函数**
     public void PanelFadeIn()
     {
         exitButton.SetActive(false); // **禁用退出按钮**
-
+        shopPannel.SetActive(true);
         canvasGroup.alpha = 0f;
         rectTransform.transform.localPosition = new Vector3(0, -1200f, 0);
         rectTransform.DOAnchorPos(Vector2.zero, fadeTime, false).SetEase(Ease.OutElastic);
@@ -28,11 +33,15 @@ public class UImanager : MonoBehaviour
     public void PanelFadeOut()
     {
 
-
         canvasGroup.alpha = 1f;
         rectTransform.transform.localPosition = Vector3.zero;
         rectTransform.DOAnchorPos(new Vector2(0, -1200), fadeTime, false).SetEase(Ease.OutElastic);
-        canvasGroup.DOFade(0f, fadeTime);
+        canvasGroup.DOFade(0f, fadeTime).OnComplete(() =>
+        {
+            shopPannel.SetActive(false);
+        });
+
+
     }
 
     // **图标动画**
