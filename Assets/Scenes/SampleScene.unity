@@ -479,6 +479,7 @@ MonoBehaviour:
   - {fileID: 16781539}
   - {fileID: 390636707}
   exitButton: {fileID: 1968605223}
+  shopPannel: {fileID: 181717284}
 --- !u!1 &181717284
 GameObject:
   m_ObjectHideFlags: 0
